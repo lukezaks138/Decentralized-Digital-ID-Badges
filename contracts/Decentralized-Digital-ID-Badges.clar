@@ -125,3 +125,14 @@
     (get expires-at badge-info)
     (get metadata badge-info))))
 
+(define-public (issue-badge-from-template 
+  (template-id uint)
+  (recipient principal)
+  (custom-metadata (optional (string-ascii 500))))
+  (let ((template-config (unwrap! (contract-call? .badge-templates get-template-config template-id) err-badge-not-found)))
+    (let 
+      ((expires-at (match (get default-duration template-config)
+                     duration (some (+ stacks-block-height duration))
+                     none))
+       (metadata (default-to (get metadata-schema template-config) custom-metadata)))
+      (issue-badge recipient (get badge-type template-config) expires-at metadata))))
