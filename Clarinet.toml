@@ -1,0 +1,32 @@
+[project]
+name = 'Decentralized-Digital-ID-Badges'
+description = ''
+authors = []
+telemetry = true
+cache_dir = '.\.cache'
+requirements = []
+[contracts.Decentralized-Digital-ID-Badges]
+path = 'contracts/Decentralized-Digital-ID-Badges.clar'
+clarity_version = 3
+epoch = 3.1
+
+[contracts.badge-templates]
+path = 'contracts/badge-templates.clar'
+clarity_version = 3
+epoch = 3.1
+[contracts.badge-endorsements]
+path = "contracts/badge-endorsements.clar"
+clarity_version = 2
+epoch = 2.5
+[repl.analysis]
+passes = ['check_checker']
+
+[repl.analysis.check_checker]
+strict = false
+trusted_sender = false
+trusted_caller = false
+callee_filter = false
+
+[repl.remote_data]
+enabled = false
+api_url = 'https://api.hiro.so'
